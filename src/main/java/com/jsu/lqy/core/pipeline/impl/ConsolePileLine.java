@@ -1,6 +1,5 @@
 package com.jsu.lqy.core.pipeline.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.jsu.lqy.core.pipeline.PipeLine;

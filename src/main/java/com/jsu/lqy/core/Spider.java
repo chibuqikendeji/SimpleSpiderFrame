@@ -146,17 +146,17 @@ public class Spider {
                 TimeSleep.sleep(1000);
             } else {
                 logger.info("正在处理:" + urlSeed.getUrl() + "  优先级(默认:5):" + urlSeed.getPriority());
-                pool.execute(new SpiderWork(urlSeed));
+                pool.execute(new Task(urlSeed));
             }
         }
 
 	}
 	
-	class SpiderWork implements Runnable {
+	class Task implements Runnable {
 
         private UrlSeed urlSeed;
 
-        SpiderWork(UrlSeed urlSeed) {
+        Task(UrlSeed urlSeed) {
 
             this.urlSeed = urlSeed;
         }

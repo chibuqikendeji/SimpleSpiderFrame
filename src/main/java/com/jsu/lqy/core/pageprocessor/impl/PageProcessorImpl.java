@@ -17,10 +17,10 @@ public class PageProcessorImpl implements PageProcessor{
         Document doc = page.getDocument();
         String title = doc.title();
         String text = doc.text();
-        Map<String, String> items = new HashMap<>();
+        Map<String, Object> items = new HashMap<>();
         items.put("title", title);
         items.put("text", text);
-        items.put("url", page.getUrlSeed().getUrl());
+        items.put("html", doc);
         page.setItems(items);
 	}
 	
