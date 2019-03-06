@@ -4,10 +4,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
@@ -16,7 +14,12 @@ import org.slf4j.LoggerFactory;
 import com.jsu.lqy.core.pipeline.PipeLine;
 import com.jsu.lqy.model.Page;
 import com.jsu.lqy.utils.FilePersistentBase;
-
+/**
+ * 
+ * @author Administrator
+ * @date: 2019年3月4日 下午5:08:59 
+ * @Description: 文件存储器。将html存为txt文件，保存在E:/data/SimpleSpiderFrame/目录下。
+ */
 public class FilePipeLine extends FilePersistentBase implements PipeLine{
     private Logger logger = LoggerFactory.getLogger(Logger.class);
     
@@ -44,7 +47,7 @@ public class FilePipeLine extends FilePersistentBase implements PipeLine{
         	Map<Object, Object> items = page.getItems();
         	for (Entry<Object, Object> entry : items.entrySet()) {
         		if (entry instanceof Iterable) {
-        			Iterable value = (Iterable) entry.getValue();
+        			Iterable<?> value = (Iterable<?>) entry.getValue();
         			pw.println(entry.getKey()+":\\t");
         			value.forEach((o)->pw.println(o));
         		}else {

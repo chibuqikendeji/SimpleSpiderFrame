@@ -1,6 +1,5 @@
 package com.jsu.lqy.core;
 
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -31,7 +30,6 @@ public class Spider {
 	private int threadNum = 5;
 	// 定义线程池
 	private ThreadPoolExecutor pool;
-	
 	public Scheduler getScheduler() {
 		return scheduler;
 	}
@@ -153,24 +151,16 @@ public class Spider {
 	}
 	
 	class Task implements Runnable {
-
         private UrlSeed urlSeed;
-
         Task(UrlSeed urlSeed) {
-
             this.urlSeed = urlSeed;
         }
-
         public void run() {
-
             logger.debug("线程:[" + Thread.currentThread().getName() + "]正在处理:" + urlSeed.getUrl());
             logger.debug("当前线程池" + "已完成:" + pool.getCompletedTaskCount() + "   运行中：" + pool.getActiveCount() + "  最大运行:" + pool.getPoolSize() + " 等待队列:" + pool.getQueue().size());
-
             //整个流程为:
             // (download下载) ->  (pageProcessor解析处理) ->  (save存储)
-
             Page nowPage = downLoader.downLoader(urlSeed);
-
             pageProcessor.process(nowPage);
             /*//正则处理
             List<UrlSeed> urlSeedList = nowPage.links();

@@ -1,12 +1,14 @@
 package com.jsu.lqy.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public class Page {
+public class Page implements Serializable{
+	private static final long serialVersionUID = 8795321664186547978L;
 	// 保存该页面的jsoup文档，设置了baseUrl
 	private Document document;
 	// 保存该页面的url信息

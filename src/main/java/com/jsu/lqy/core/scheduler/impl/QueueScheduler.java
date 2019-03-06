@@ -11,7 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import com.jsu.lqy.core.scheduler.Scheduler;
 import com.jsu.lqy.model.UrlSeed;
-
+/**
+ * 
+ * @author Administrator
+ * @date: 2019年3月4日 下午5:09:47 
+ * @Description: 调度器。
+ * 使用基于优先级的队列进行urlSeed的去重与排序。
+ */
 public class QueueScheduler implements Scheduler{
 	// 设置队列的初始大小
 	public static final int defaultPriority = 5;
