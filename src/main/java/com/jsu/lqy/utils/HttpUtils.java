@@ -121,17 +121,14 @@ public class HttpUtils {
 		}
 		// 去掉前后多余的空格
 		url = url.trim();
-		// 创建一个发送Http请求的对象
-		CloseableHttpClient client = httpUtils.getHttpClient();
 		// 创建一个接收响应的对象
 		CloseableHttpResponse response = null;
 		// 创建输入流
 		InputStream in = null;
 		// 构建请求
 		HttpGet httpGet = null;
-		
-		// 修改url的请求头
 		try {
+			// 修改url的请求头
 			// 构建httpGet对象
 			URL baseUrl = new URL(url);
 			URI uri = new URI(baseUrl.getProtocol(), baseUrl.getHost(), baseUrl.getPath(), baseUrl.getQuery(), null);
@@ -144,7 +141,6 @@ public class HttpUtils {
 			Random random = new Random();
 			Integer index = random.nextInt(4);
 			httpGet.addHeader("User-Agent", USER_AGENT[index]);
-			
 			// 执行请求
 			try {
 				if (urlString.startsWith("https")) {
@@ -157,7 +153,6 @@ public class HttpUtils {
 			} catch (Exception e) {
 				logger.error("执行httpClient.execute(httpGet)的异常", e);
 			} 
-			
 			// 获得响应状态码
 			Integer statusCode = response.getStatusLine().getStatusCode();
 			// 根据状态码进行逻辑处理
@@ -192,7 +187,6 @@ public class HttpUtils {
 					}
 				}
 				src = new String(buffer.toByteArray());
-				//System.out.println("src:"+src);
 				break;
 			case 400:
                 logger.info("400:请求参数错误 " + urlString);

@@ -9,8 +9,7 @@ public class TimeSleep {
     private static Logger logger = LoggerFactory.getLogger(TimeSleep.class);
 
     /**
-     * 睡眠等待
-     *
+     *  睡眠等待
      * @param milliseconds 毫秒
      */
     public static void sleep(long milliseconds) {

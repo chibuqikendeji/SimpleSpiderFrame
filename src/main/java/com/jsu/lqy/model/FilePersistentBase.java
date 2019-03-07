@@ -1,4 +1,4 @@
-package com.jsu.lqy.utils;
+package com.jsu.lqy.model;
 
 import java.io.File;
 

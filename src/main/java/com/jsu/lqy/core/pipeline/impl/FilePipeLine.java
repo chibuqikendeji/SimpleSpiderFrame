@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jsu.lqy.core.pipeline.PipeLine;
+import com.jsu.lqy.model.FilePersistentBase;
 import com.jsu.lqy.model.Page;
-import com.jsu.lqy.utils.FilePersistentBase;
 /**
  * 
  * @author Administrator

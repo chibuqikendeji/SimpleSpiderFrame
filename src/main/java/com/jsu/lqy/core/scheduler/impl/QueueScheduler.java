@@ -27,6 +27,7 @@ public class QueueScheduler implements Scheduler{
 	private PriorityQueue<UrlSeed> queue = 
 			new PriorityQueue<>(defaultPriority, 
 					new Comparator<UrlSeed>() {
+				// 降序排序
 						@Override
 						public int compare(UrlSeed o1, UrlSeed o2) {
 							return (int) (o2.getPriority()-o1.getPriority());
