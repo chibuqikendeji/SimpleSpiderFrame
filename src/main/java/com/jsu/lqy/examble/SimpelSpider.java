@@ -18,7 +18,7 @@ import com.jsu.lqy.core.pageprocessor.PageProcessor;
 import com.jsu.lqy.core.pipeline.PipeLine;
 import com.jsu.lqy.model.Page;
 import com.jsu.lqy.model.UrlSeed;
-import com.jsu.lqy.utils.JsonUtils;
+import com.jsu.lqy.utils.JsonUtil;
 
 /**
  * 根据一个规则，爬取学院官网上的符合此规则的新闻内容
@@ -30,8 +30,8 @@ public class SimpelSpider {
     public static void main(String[] args) {
 		Spider.build()
 		.addUrlSeed("http://cise.jsu.edu.cn/index.htm")
-		.setPageProcessor(new myProcessor())
-		.setPipeLine(new myPipeLine())
+		.setPageProcessor(new MyProcessor())
+		.setPipeLine(new MyPipeLine())
 		.thread(10)
 		.run();
 	}
@@ -43,7 +43,7 @@ public class SimpelSpider {
  * @date: 2019年3月7日 下午1:55:24
  * @Description: 页面解析
  */
-class myProcessor implements PageProcessor{
+class MyProcessor implements PageProcessor{
 	private String baseUrl = "http://cise.jsu.edu.cn/";
 	private String regex = ".*info/\\d*/\\d*.htm";
 	private List<UrlSeed> urlSeedList = new ArrayList<>();
@@ -52,7 +52,7 @@ class myProcessor implements PageProcessor{
 		if (Pattern.matches(regex, page.getUrlSeed().getUrl())) {
 			String context = "";
 			Map<String, Object> items = new HashMap<>();
-			String cssQuery = "#vsb_content > div > p";
+			String cssQuery = "#vsb_content";
 			Document d = page.getDocument();
         	Elements select = d.select(cssQuery);
         	for (Element e : select) {
@@ -77,7 +77,7 @@ class myProcessor implements PageProcessor{
  * @date: 2019年3月7日 下午1:56:08 
  * @Description: 存储器
  */
-class myPipeLine implements PipeLine{
+class MyPipeLine implements PipeLine{
 	public static String path = "E:\\cise.jsu\\";
 	@Override
 	public void save(Page page) {
@@ -87,7 +87,7 @@ class myPipeLine implements PipeLine{
         	if (fileRoot.mkdirs()) {
         		System.out.println("文件"+path+"创建成功");
         	}else {
-        		System.out.println("目标文件夹不存在，创建失败");
+        		System.out.println("文件夹创建失败");
                 System.exit(-1);
         	}
         }
@@ -96,7 +96,7 @@ class myPipeLine implements PipeLine{
         	if (name==null || name.equals("")) {
         		return;
         	}
-        	String json = JsonUtils.toJsonBeautiful(page.getItems());
+        	String json = JsonUtil.toJsonBeautiful(page.getItems());
         	// 将json串存入文件中
         	try {
         		FileUtils.write(new File(path+name+".json"), json,"utf-8");
@@ -106,5 +106,4 @@ class myPipeLine implements PipeLine{
         	}
         }
 	}
-	
 }

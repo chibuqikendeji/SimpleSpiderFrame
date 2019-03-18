@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 
 public class Page implements Serializable{
 	private static final long serialVersionUID = 8795321664186547978L;
-	// 保存该页面的jsoup文档，设置了baseUrl
+	// 保存该页面的Html文档，设置了baseUrl
 	private Document document;
 	// 保存该页面的url信息
 	private UrlSeed urlSeed;

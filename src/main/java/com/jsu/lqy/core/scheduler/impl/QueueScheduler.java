@@ -21,8 +21,6 @@ import com.jsu.lqy.model.UrlSeed;
 public class QueueScheduler implements Scheduler{
 	// 设置队列的初始大小
 	public static final int defaultPriority = 5;
-	// 日志打印
-	private Logger logger = LoggerFactory.getLogger(getClass());
 	// 优先级队列，传入比较器
 	private PriorityQueue<UrlSeed> queue = 
 			new PriorityQueue<>(defaultPriority, 

@@ -1,6 +1,5 @@
 package com.jsu.lqy.core;
 
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +12,8 @@ import com.jsu.lqy.core.downloader.DownLoader;
 import com.jsu.lqy.core.pageprocessor.PageProcessor;
 import com.jsu.lqy.core.pageprocessor.impl.PageProcessorImpl;
 import com.jsu.lqy.core.pipeline.PipeLine;
-import com.jsu.lqy.core.pipeline.impl.ConsolePileLine;
+import com.jsu.lqy.core.pipeline.impl.ConsolePileline;
+import com.jsu.lqy.core.pipeline.impl.MybatisPipeline;
 import com.jsu.lqy.core.scheduler.Scheduler;
 import com.jsu.lqy.core.scheduler.impl.QueueScheduler;
 import com.jsu.lqy.model.Page;
@@ -115,7 +115,7 @@ public class Spider {
 			pageProcessor = new PageProcessorImpl();
 		}
 		if (pipeLine==null) {
-			pipeLine = new ConsolePileLine();
+			pipeLine = new MybatisPipeline();
 		}
 		return this;
 	}
@@ -165,8 +165,10 @@ public class Spider {
             if ((nowPage.getNewUrlSeed())!=null) {
             	nowPage.getNewUrlSeed().forEach(seed -> scheduler.push(seed));
             }
+            if (nowPage.getDocument().equals("")) {
+            	return;
+            }
             pipeLine.save(nowPage);
         }
     }
-	
 }
