@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jsu.lqy.core.dowmloader.impl.HttpClientDowmloader;
+import com.jsu.lqy.core.dowmloader.impl.HttpClientDownloader;
 import com.jsu.lqy.core.downloader.DownLoader;
 import com.jsu.lqy.core.pageprocessor.PageProcessor;
 import com.jsu.lqy.core.pageprocessor.impl.PageProcessorImpl;
@@ -109,7 +109,7 @@ public class Spider {
 			scheduler = new QueueScheduler();
 		}
 		if (downLoader==null) {
-			downLoader = new HttpClientDowmloader();
+			downLoader = new HttpClientDownloader();
 		}
 		if (pageProcessor==null) {
 			pageProcessor = new PageProcessorImpl();

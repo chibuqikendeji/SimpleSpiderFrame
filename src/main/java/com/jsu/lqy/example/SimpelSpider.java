@@ -1,4 +1,4 @@
-package com.jsu.lqy.examble;
+package com.jsu.lqy.example;
 
 import java.io.File;
 import java.io.IOException;

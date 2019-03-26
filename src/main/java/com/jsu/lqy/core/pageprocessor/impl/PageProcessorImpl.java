@@ -19,7 +19,7 @@ import com.jsu.lqy.model.UrlSeed;
  * @Description: 解析页面，筛选出需要的信息，保存在Page的List item中
  */
 public class PageProcessorImpl implements PageProcessor{
-	
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void process(Page page) {
 		if (page.getDocument().equals("")) {
@@ -39,5 +39,4 @@ public class PageProcessorImpl implements PageProcessor{
         page.setNewUrlSeed(newUrlSeedList);
         page.setItems(items);
 	}
-	
 }
