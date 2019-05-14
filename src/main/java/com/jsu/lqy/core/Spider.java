@@ -12,7 +12,6 @@ import com.jsu.lqy.core.downloader.DownLoader;
 import com.jsu.lqy.core.pageprocessor.PageProcessor;
 import com.jsu.lqy.core.pageprocessor.impl.PageProcessorImpl;
 import com.jsu.lqy.core.pipeline.PipeLine;
-import com.jsu.lqy.core.pipeline.impl.ConsolePileline;
 import com.jsu.lqy.core.pipeline.impl.MybatisPipeline;
 import com.jsu.lqy.core.scheduler.Scheduler;
 import com.jsu.lqy.core.scheduler.impl.QueueScheduler;
@@ -59,22 +58,7 @@ public class Spider {
 		this.pipeLine = pipeLine;
 		return this;
 	}
-	/**
-	 * 设置最多几个爬虫同时进行
-	 * 默认5个
-	 * @param threadNum
-	 * @return
-	 */
-	public Spider thread(int threadNum) {
-        this.threadNum = threadNum;
-        if (threadNum <= 0) {
-            this.threadNum = 5;
-        }
-        pool = new ThreadPoolExecutor(threadNum, threadNum,
-                1500L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>());
-        return this;
-    }
+	
 	/**
 	 * 生成爬虫
 	 * @return
@@ -103,7 +87,7 @@ public class Spider {
 	 * 设置默认组件
 	 */
 	private Spider setDefaultComponents(){
-		// 线程池设置
+		// 线程池设置 
 		thread(threadNum);
 		if (scheduler==null) {
 			scheduler = new QueueScheduler();
@@ -119,7 +103,22 @@ public class Spider {
 		}
 		return this;
 	}
-	
+	/**
+	 * 设置最多几个爬虫同时进行
+	 * 默认5个
+	 * @param threadNum
+	 * @return
+	 */
+	public Spider thread(int threadNum) {
+        this.threadNum = threadNum;
+        if (threadNum <= 0) {
+            this.threadNum = 5;
+        }
+        pool = new ThreadPoolExecutor(threadNum, threadNum,
+                1500L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>());
+        return this;
+    }
 	public void run() {
 		logger.info("爬虫启动!");
 		UrlSeed urlSeed = null;
@@ -127,7 +126,7 @@ public class Spider {
             logger.info("当前线程池" + "已完成:" + pool.getCompletedTaskCount() + "   运行中：" + pool.getActiveCount() + "  最大运行:" + pool.getPoolSize() + " 等待队列:" + pool.getQueue().size());
             if (pool.getQueue().size() > pool.getCorePoolSize()) {
                 //如果等待队列大于了100.就暂停接收新的url。不然会影响优先级队列的使用。
-                TimeSleep.sleep(1000);
+                TimeSleep.sleep(1500);
                 continue;
             }
             urlSeed = scheduler.poll();

@@ -6,9 +6,6 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.jsu.lqy.core.scheduler.Scheduler;
 import com.jsu.lqy.model.UrlSeed;
 /**
@@ -20,7 +17,7 @@ import com.jsu.lqy.model.UrlSeed;
  */
 public class QueueScheduler implements Scheduler{
 	// 设置队列的初始大小
-	public static final int defaultPriority = 5;
+	public static final int defaultPriority = 10;
 	// 优先级队列，传入比较器
 	private PriorityQueue<UrlSeed> queue = 
 			new PriorityQueue<>(defaultPriority, 

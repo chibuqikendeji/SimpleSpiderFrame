@@ -1,15 +1,12 @@
-package com.jsu.lqy.selenium;
+package com.jsu.lqy.extend.selenium;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.pagefactory.ByAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +18,7 @@ public class SeleniumDownLoader implements DownLoader{
     private Logger logger = LoggerFactory.getLogger(SeleniumDownLoader.class);
     private Integer sleepTime = 10;
     public SeleniumDownLoader() {
-    	System.setProperty("webdriver.chrome.driver", "E:./src/main/resources/chromedriver.exe");		
+    	System.setProperty("webdriver.chrome.driver", "D:./src/main/resources/chromedriver.exe");		
 	}
     public SeleniumDownLoader(String chromeDriverPath) {
     	System.setProperty("webdriver.chrome.driver", chromeDriverPath);		
@@ -59,10 +56,10 @@ public class SeleniumDownLoader implements DownLoader{
 		return page;
 	}
         
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		SeleniumDownLoader downloader = new SeleniumDownLoader();
 		Page page = downloader.downLoader(new UrlSeed("https://lol.qq.com/"));
 		System.out.println(page.getDocument());
 		System.out.println(page.getUrlSeed().toString());
-	}
+	}*/
 }

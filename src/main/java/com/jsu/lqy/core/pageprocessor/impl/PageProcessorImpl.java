@@ -16,7 +16,7 @@ import com.jsu.lqy.model.UrlSeed;
  * 
  * @author Administrator
  * @date: 2019年3月4日 下午5:06:21 
- * @Description: 解析页面，筛选出需要的信息，保存在Page的List item中
+ * @Description: 解析页面，筛选出需要的信息，保存在Page的List,item中
  */
 public class PageProcessorImpl implements PageProcessor{
 	@SuppressWarnings("unlikely-arg-type")

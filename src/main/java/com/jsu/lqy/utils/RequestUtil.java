@@ -83,7 +83,7 @@ public class RequestUtil {
 				HttpEntity entity = response.getEntity();
 				// 判断响应流是否采用了GZIP压缩
 				Header header = entity.getContentEncoding();
-				// 判断是否是gzip压缩
+				// 此标识用于判断是否是gzip压缩
 				boolean gZip = false;
 				if (header != null) {
 					for (HeaderElement he : header.getElements()) {
@@ -129,7 +129,7 @@ public class RequestUtil {
 				break;
 			}
 		} catch (MalformedURLException e) {
-			//执行URL url = new URL()的异常
+			//执行URL baseUrl = new URL()的异常
             logger.error("执行URL url = new URL()的异常", e);
 		} catch (URISyntaxException e) {
 			//执行URI uri = new URI()的异常

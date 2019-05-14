@@ -12,7 +12,6 @@ import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultRedirectStrategy;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.ssl.SSLContexts;
@@ -50,9 +49,7 @@ public class HttpUtil {
                     .register("https", sslsf)
                     .build();
             httpClientConnectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-            // Increase max total connection to 200
             httpClientConnectionManager.setMaxTotal(maxTotalPool);
-            // Increase default max connection per route to 20
             httpClientConnectionManager.setDefaultMaxPerRoute(maxConPerRoute);
             SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(socketTimeout).build();
             httpClientConnectionManager.setDefaultSocketConfig(socketConfig);
@@ -74,13 +71,6 @@ public class HttpUtil {
         		.setConnectionManager(httpClientConnectionManager)
         		// 请求设置
         		.setDefaultRequestConfig(requestConfig)
-        		// 设置禁止重定向
-        		.setRedirectStrategy(new DefaultRedirectStrategy() {
-        			@Override
-        			protected boolean isRedirectable(String method) {
-        				return false;
-        			}
-        		})
         		.build();
         return httpClient;
     }

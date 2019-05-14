@@ -4,6 +4,6 @@
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
        <mapper namespace="com.jsu.lqy.dao.WebDao">
            <insert id="insert" parameterType="Web">
-               insert into web values(null,#{url},#{title})
+               insert into pages values(null,#{url},#{title})
            </insert>
        </mapper>

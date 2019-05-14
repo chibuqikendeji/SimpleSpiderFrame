@@ -16,6 +16,7 @@ import org.jsoup.select.Elements;
 import com.jsu.lqy.core.Spider;
 import com.jsu.lqy.core.pageprocessor.PageProcessor;
 import com.jsu.lqy.core.pipeline.PipeLine;
+import com.jsu.lqy.core.pipeline.impl.FilePipeline;
 import com.jsu.lqy.model.Page;
 import com.jsu.lqy.model.UrlSeed;
 import com.jsu.lqy.utils.JsonUtil;
@@ -31,7 +32,8 @@ public class SimpelSpider {
 		Spider.build()
 		.addUrlSeed("http://cise.jsu.edu.cn/index.htm")
 		.setPageProcessor(new MyProcessor())
-		.setPipeLine(new MyPipeLine())
+		//.setPipeLine(new MyPipeLine())
+		.setPipeLine(new FilePipeline())
 		.thread(10)
 		.run();
 	}
@@ -78,7 +80,7 @@ class MyProcessor implements PageProcessor{
  * @Description: 存储器
  */
 class MyPipeLine implements PipeLine{
-	public static String path = "E:\\cise.jsu\\";
+	public static String path = "D:\\cise\\jsu\\";
 	@Override
 	public void save(Page page) {
         File fileRoot = new File(path);

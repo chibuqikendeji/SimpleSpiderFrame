@@ -14,7 +14,7 @@ public class TimeSleep {
      */
     public static void sleep(long milliseconds) {
         try {
-            TimeUnit.MILLISECONDS.sleep(1500);
+            TimeUnit.MILLISECONDS.sleep(milliseconds);
         } catch (InterruptedException e) {
             logger.error("该线程无法获取到种子了（意味着线程正常结束！或者出错！）", e);
         }

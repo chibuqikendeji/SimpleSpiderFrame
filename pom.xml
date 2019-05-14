@@ -27,7 +27,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.6</version>
 		</dependency>
-
 		<!-- gson json序列化 -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -55,7 +54,7 @@
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
-		<version>8.0.13</version>
+		<version>5.1.47</version>
 	</dependency>
 	<dependency>
 		<groupId>org.mybatis</groupId>
@@ -63,6 +62,7 @@
 		<version>3.2.8</version>
 	</dependency>
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<!-- 添加JDK插件(版本1.8) -->
